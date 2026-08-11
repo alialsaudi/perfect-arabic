@@ -1,8 +1,8 @@
 # Test Cases
 
-Use these cases to verify that the ChatGPT Project is behaving correctly after setup. Each case gives a **user prompt**, the **expected behavior**, and **what should not happen**. The grammatical rulings are all grounded in the uploaded knowledge files.
+Nine cases for checking that an install behaves. Each gives a **prompt**, the **expected behavior**, and **what should not happen**. Every ruling below comes from the files in `references/`.
 
-> Run every test in a fresh chat **inside** the project so the instructions and uploaded files are active.
+Run each in a fresh conversation. Two of the cases — 7 and 8 — are the ones worth caring about: they test restraint rather than knowledge, and a mis-installed or half-loaded skill fails them first.
 
 ---
 
@@ -37,7 +37,7 @@ Use these cases to verify that the ChatGPT Project is behaving correctly after s
 
 **Expected behavior**
 - Flags «قالَ فاطمةُ» → «قالتْ فاطمةُ».
-- القاعدة: باب الفاعل — تأنيث الفعل مع الفاعل المؤنث الحقيقي (cites `02-verbs-objects.md`).
+- القاعدة: باب الفاعل — تأنيث الفعل مع الفاعل المؤنث الحقيقي (cites `references/02-verbs-objects.md`).
 - درجة التصحيح: **واجب** (تأنيث الفعل واجب مع المؤنث الحقيقي الظاهر المتّصل).
 - Returns the corrected sentence intact otherwise.
 
@@ -58,7 +58,7 @@ Use these cases to verify that the ChatGPT Project is behaving correctly after s
 
 **Expected behavior**
 - Flags «الطالبُ» → «الطالبَ».
-- القاعدة: إنَّ وأخواتها تنصب الاسم وترفع الخبر (`01-foundations.md` §إن وأخواتها).
+- القاعدة: إنَّ وأخواتها تنصب الاسم وترفع الخبر (`references/01-foundations.md` §إن وأخواتها).
 - درجة التصحيح: **واجب**.
 
 **Should NOT happen**
@@ -78,7 +78,7 @@ Use these cases to verify that the ChatGPT Project is behaving correctly after s
 
 **Expected behavior**
 - Flags «الطالبَ» → «الطالبُ».
-- القاعدة: كان وأخواتها ترفع الاسم وتنصب الخبر (`01-foundations.md` §كان وأخواتها).
+- القاعدة: كان وأخواتها ترفع الاسم وتنصب الخبر (`references/01-foundations.md` §كان وأخواتها).
 - درجة التصحيح: **واجب**.
 
 **Should NOT happen**
@@ -97,15 +97,17 @@ Use these cases to verify that the ChatGPT Project is behaving correctly after s
 ```
 
 **Expected behavior**
-- Flags «ثلاث كتبٍ» → «ثلاثةَ كتبٍ» (كتاب مذكر، فالعدد من ٣–١٠ يخالفه فيؤنَّث بالتاء عند المذكر — لا، يُذكَّر… ننتبه: القاعدة عكسيّة: «العدد يخالف المعدود في التذكير والتأنيث للأعداد ٣–١٠».
-  المعدود «كتاب» مذكر ⇐ يجب تأنيث العدد ⇐ «ثلاثةَ كتبٍ».
-- Flags «خمسة مجلاتٍ» → «خمسَ مجلاتٍ» (مجلة مؤنث ⇐ يجب تذكير العدد).
-- القاعدة: باب العدد — مخالفة العدد للمعدود من ٣ إلى ١٠ (`04-morphology-special.md` §العدد).
-- درجة التصحيح: **واجب** لكلا الخطأين.
+
+Both numerals are wrong, and they are wrong in opposite directions. From 3 to 10 the numeral takes the **opposite** gender marking to the thing it counts:
+
+- «ثلاث كتبٍ» ← «ثلاثةَ كتبٍ» — مفرد المعدود «كتاب» مذكر، فيلحق العدد التاء.
+- «خمسة مجلاتٍ» ← «خمسَ مجلاتٍ» — مفرد المعدود «مجلة» مؤنث، فيتجرد العدد من التاء.
+- القاعدة: باب العدد — مخالفة العدد للمعدود من ٣ إلى ١٠ (`references/04-morphology-special.md` §العدد).
+- درجة التصحيح: **واجب** في الموضعين.
 
 **Should NOT happen**
-- Swapping the rule (“the number agrees with the counted”) — it is the **opposite** for 3–10.
-- Ignoring one of the two errors.
+- Stating the rule as agreement rather than opposition. This is the single error a model is most likely to make from memory, which is why the case is here.
+- Catching one numeral and letting the other pass.
 
 ---
 
@@ -119,8 +121,8 @@ Use these cases to verify that the ChatGPT Project is behaving correctly after s
 ```
 
 **Expected behavior**
-- Flags «راكبٌ» → «راكباً» — الحال منصوبة (`02-verbs-objects.md` §الحال). درجة التصحيح: **واجب**.
-- Flags «كتابٌ» → «كتاباً» — تمييز العدد من ١١ إلى ٩٩ مفرد منصوب (`02-verbs-objects.md` §التمييز، و`04-morphology-special.md` §العدد). درجة التصحيح: **واجب**.
+- Flags «راكبٌ» → «راكباً» — الحال منصوبة (`references/02-verbs-objects.md` §الحال). درجة التصحيح: **واجب**.
+- Flags «كتابٌ» → «كتاباً» — تمييز العدد من ١١ إلى ٩٩ مفرد منصوب (`references/02-verbs-objects.md` §التمييز، و`references/04-morphology-special.md` §العدد). درجة التصحيح: **واجب**.
 
 **Should NOT happen**
 - Treating الحال as اسم مرفوع.
@@ -142,7 +144,7 @@ Use these cases to verify that the ChatGPT Project is behaving correctly after s
   1. **الإتباع** على البدلية (مرفوع هنا: «إلا محمدٌ») — وهو **الأرجح**.
   2. **النصب** على الاستثناء («إلا محمداً») — جائز.
 - Does **not** flag «إلا محمدٌ» as an error. Tags it as **جائز مع ملاحظة** that الإتباع هو الأرجح.
-- Cites: باب الاستثناء (`02-verbs-objects.md` §الاستثناء).
+- Cites: باب الاستثناء (`references/02-verbs-objects.md` §الاستثناء).
 
 **Should NOT happen**
 - Calling the sentence wrong.
@@ -191,10 +193,10 @@ Use these cases to verify that the ChatGPT Project is behaving correctly after s
 
 ---
 
-## How to read the results
+## Reading the results
 
-If all nine tests produce the expected behavior, the project is correctly set up. If any test fails:
+Nine passes means the install is sound. A failure is almost always one of three things:
 
-- Re-upload the four knowledge files (see `UPLOAD_FILES.md`).
-- Re-paste `PROJECT_INSTRUCTIONS.md` into the instructions field — it may have been truncated.
-- Start a fresh chat **inside** the project, not outside it.
+- **No باب cited anywhere.** The `references/` files didn't come along. Reinstall the whole folder, not just `SKILL.md`.
+- **The skill never engaged.** Call it explicitly — `$perfect-arabic`, `@Perfect Arabic`, `/perfect-arabic` — and if that works, the install is fine and only the automatic triggering missed.
+- **Case 7 or 8 failed while the rest passed.** The skill loaded and the model overrode it. Nothing to reinstall; restate the constraint in the prompt.
