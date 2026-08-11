@@ -1,6 +1,6 @@
-# Starter Prompts
+# Prompts
 
-Use any of the following as the first message in a chat inside the **Perfect Arabic — العربية السليمة** project. Replace the ellipsis (`…`) with your own text.
+Replace each ellipsis (`…`) with your own text. These work as written on all three surfaces; where a platform needs an explicit call, prefix it — `$perfect-arabic` in Codex, `@Perfect Arabic` in ChatGPT, `/perfect-arabic` in Claude Code.
 
 ---
 
